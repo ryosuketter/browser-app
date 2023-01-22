@@ -6,7 +6,7 @@ export const statusMap = {
   done: "DONE",
 } as const
 
-export type Status = keyof typeof statusMap
+export type Status = typeof statusMap[keyof typeof statusMap]
 
 export class Task {
   readonly id

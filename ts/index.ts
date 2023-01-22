@@ -43,11 +43,10 @@ class Application {
 
   private handleClickDeleteTask = (task: Task) => {
     if (!window.confirm(`「${task.title}」を削除してよろしいですか？`)) return
-    console.log(task)
 
-    // this.eventListener.remove(task.id)
-    // this.taskCollection.delete(task)
-    // this.taskRenderer.remove(task)
+    this.eventListener.remove(task.id)
+    this.taskCollection.delete(task)
+    this.taskRenderer.remove(task)
   }
 }
 

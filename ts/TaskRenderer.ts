@@ -31,4 +31,10 @@ export class TaskRenderer {
 
     return { taskEl, deleteButtonEl }
   }
+
+  remove(task: Task) {
+    const taskEl = document.getElementById(task.id)
+    if (!taskEl) return
+    this.todoList.removeChild(taskEl)
+  }
 }

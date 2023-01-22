@@ -40,7 +40,18 @@ export class TaskRenderer {
   remove(task: Task) {
     const taskEl = document.getElementById(task.id)
     if (!taskEl) return
-    this.todoList.removeChild(taskEl)
+
+    if (task.status === statusMap.todo) {
+      this.todoList.removeChild(taskEl)
+    }
+
+    if (task.status === statusMap.doing) {
+      this.doingList.removeChild(taskEl)
+    }
+
+    if (task.status === statusMap.done) {
+      this.doneList.removeChild(taskEl)
+    }
   }
 
   subscribeDragAndDrop(

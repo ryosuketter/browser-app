@@ -1,5 +1,5 @@
 import { EventListener } from "./EventListener"
-import { Task, Status } from "./Task"
+import { Task, Status, statusMap } from "./Task"
 import { TaskCollection } from "./TaskCollection"
 import { TaskRenderer } from "./TaskRenderer"
 
@@ -64,7 +64,9 @@ class Application {
 
   private handleClickDeleteAllDoneTasks = () => {
     if (!window.confirm("DONE のタスクを一括削除してよろしいですか？")) return
-    console.log("一括削除しました")
+
+    const doneTasks = this.taskCollection.filter(statusMap.done)
+    console.log(doneTasks)
   }
 
   private handleDropAndDrop = (

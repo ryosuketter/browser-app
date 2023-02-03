@@ -4,11 +4,11 @@ const STORAGE_KEY = "TASKS"
 
 export class TaskCollection {
   private readonly storage
-  private tasks: Task[] = []
+  private tasks
 
   constructor() {
     this.storage = localStorage
-    console.log(this.storage)
+    this.tasks = this.getStoredTasks()
   }
 
   add(task: Task) {
@@ -38,5 +38,22 @@ export class TaskCollection {
 
   private updateStorage() {
     this.storage.setItem(STORAGE_KEY, JSON.stringify(this.tasks))
+  }
+
+  private getStoredTasks() {
+    const jsonString = this.storage.getItem(STORAGE_KEY)
+
+    if (!jsonString) return []
+
+    try {
+      const storedTasks: any[] = JSON.parse(jsonString)
+      const tasks = storedTasks.map((task) => new Task(task))
+
+      console.log(tasks)
+      return tasks
+    } catch {
+      this.storage.removeItem(STORAGE_KEY)
+      return []
+    }
   }
 }
